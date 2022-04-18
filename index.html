@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./assets/style.css"
+      class="css"
+      type="text/css"
+    />
+    <title>Jojo Characters</title>
+  </head>
+  <body>
+    <header>
+      <img
+        src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9af4c12f-a0d9-48ab-a9d3-240148699eaf/ddrmyz1-e0eb36c4-c631-45d7-8e27-d47c2f679365.png/v1/fill/w_1280,h_970,strp/_logo__jojo_s_bizarre_adventure_logo_recreation_by_rapbattleeditor0510_ddrmyz1-fullview.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9OTcwIiwicGF0aCI6IlwvZlwvOWFmNGMxMmYtYTBkOS00OGFiLWE5ZDMtMjQwMTQ4Njk5ZWFmXC9kZHJteXoxLWUwZWIzNmM0LWM2MzEtNDVkNy04ZTI3LWQ0N2MyZjY3OTM2NS5wbmciLCJ3aWR0aCI6Ijw9MTI4MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.Ilp4MHH4svhlqydszfLGMLX1RameyTFw2uihPbK5Qvw"
+      />
+      <div class="barra-de-pesquisa">
+        <h3>Pesquisar personagem:</h3>
+        <div class="personagem-escolhido-espaco">
+          <div id="personagem-escolhido-input-espaco">
+            <input
+              type="number"
+              id="idChar"
+              placeholder="Digite o ID do personagem e clique em 'Escolher'"
+            />
+            <button id="idPersonagemButton" onclick="findByIdCharacters()">
+              <b>ESCOLHER</b>
+            </button>
+            <section class="button-modal-create">
+              <button type="button" class="add-button" onclick="abrirModal()">
+                ADCIONAR PERSONAGEM
+              </button>
+            </section>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="Main__Infos">
+      <section class="modal-overlay" id="create">
+        <section class="card-modal">
+          <div class="modal-header">
+            <h2 id="modal-title">Adcionando personagem</h2>
+            <a href="" class="exit-modal" onclick="fecharModal()">X</a>
+          </div>
+
+          <div class="modal-body">
+            <form action="">
+              <input type="hidden" id="id" />
+              <input
+                type="text"
+                name="personagem"
+                id="personagem"
+                placeholder="Nome do personagem"
+              />
+              <input
+                type="text"
+                name="stand"
+                id="stand"
+                placeholder="Stand do personagem"
+              />
+              <input
+                type="text"
+                name="standstatus"
+                id="standstatus"
+                placeholder="Tier do stand"
+              />
+              <input
+                type="text"
+                name="habilidades"
+                id="habilidades"
+                placeholder="Habilidade"
+              />
+              <input
+                type="text"
+                name="foto"
+                id="foto"
+                placeholder="Link do gif ou foto do personagem"
+              />
+              <textarea
+                type="text"
+                name="descricao"
+                rows="5"
+                id="descricao"
+                placeholder="Descrição do personagem"
+              ></textarea>
+              <button type="submit" onclick="createCharacter()">Enviar</button>
+            </form>
+          </div>
+        </section>  
+      </section>
+
+      <section class="modal-overlay" id="delete">
+        <section class="card-modal">
+          <div class="modal-header">
+            <h2 id="modal-title">Confirmação de deleção</h2>
+            <a href="" class="exit-modal" onclick="fecharModalDelete()">X</a>
+          </div>
+          <div class="modal-body" id="delete-body">
+            <p>Deseja realmente apagar esse personagem?</p>
+            <div class="btns-delete">
+              <button class="btn-nao btn-delete" onclick="fecharModalDelete()">
+                Não
+              </button>
+              <button class="btn-sim btn_delete" >
+                Sim
+              </button>
+            </div>
+          </div>
+        </section>
+      </section>
+
+      <div class="characterList" id="charList">
+        <!-- ADJACENT HTML -->
+      </div>
+      <div id="personagemEscolhido">
+        <!-- INNER HTML -->
+      </div>
+    </section>
+    <script src="./assets/script.js"></script>
+  </body>
+</html>

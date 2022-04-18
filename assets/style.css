@@ -1,0 +1,315 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka&family=Fredoka+One&family=Signika+Negative:wght@300&display=swap');
+body,
+html{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+    background-image:linear-gradient(#C139DE,#8661CA,#4d3677) ;
+    font-family:'Fredoka', sans-serif;;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    height: 30%;
+    width: 100%;
+}
+
+header > img { 
+    height:100%;
+    width: 50%;
+}
+header > .barra-de-pesquisa {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    height: 100% ;
+    gap: 1rem;
+    width: 30%;
+}
+header > .barra-de-pesquisa> h3 {
+    margin: 10px;
+    color: #ffffff;
+}
+.add-button{
+    background-color: transparent;
+    border: 1px groove #7b39de;
+    font-family: 'Fredoka', sans-serif;
+    color: #4d3677;
+    padding: .5rem;
+    border-radius: .3rem;
+    width: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+.add-button:hover{
+    background-color: #8661CA;
+    color: #ffffff;
+}
+
+#idPersonagemButton{
+    background-color: transparent;
+    border: 1px groove #7b39de;
+    font-family: 'Fredoka', sans-serif;
+    color: #4d3677;
+    padding: .5rem;
+    border-radius: .3rem;
+    width: 100%;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: all .3s ease-in-out;
+}
+#idPersonagemButton:hover{
+    background-color: #8661CA;
+    color: #ffffff;
+}
+.Add__Card{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    border-style:dashed;
+    border-width: 1px;
+    border-color: #000;
+    border-radius: 12px;
+    height: 300px;
+    width: 200px;
+}
+.Add__Card > #Plus{
+    font-size: 60px;
+}
+
+.Main__Infos{
+    display: flex;
+    min-width: 80%;
+    position:relative;
+    height: 50%;
+    gap: 30px;
+    padding: 15px;
+}
+.Main__Infos > .characterList{
+    display: flex;
+    height: fit-content;
+    flex-wrap: wrap;
+    gap:20px;
+
+}
+.characterList > .Main__Card{
+    display: flex;
+    flex-direction: column;   
+    height: 300px;
+    width: 200px;
+    background-image: radial-gradient(rgba(77, 46, 136, 0.5),rgba(134, 97, 202,0.5),rgba(77, 54, 119,0.5));
+    border-style: groove;
+    border-color: #9f1583a7;
+    border-width: 1px;
+    border-radius: 12px ;
+}
+.Main__Card > .CharsList__Img{
+    height: 80%;
+    width: 100%;
+    margin-left: 25px ;
+}
+.CharsList__Img > img{
+    height: 100%;
+    width: 100%;
+}
+
+.Main__Infos > #personagemEscolhido{
+    height: fit-content;
+}
+
+
+.Char__Card{
+    display: flex;
+    flex-direction: column; 
+    justify-content: space-between;  
+    height: 500px;
+    width: 300px;
+    background-image: linear-gradient(rgba(136, 46, 125, 0.5),rgba(218, 45, 221, 0.5),rgba(54, 83, 119, 0.5));
+    border-style: ridge;
+    border-color: #7b39de;
+    border-width: 1px;
+    border-radius: 12px ;
+}
+
+.Char__Img {
+    height: 50%;
+    width: 100%;
+    margin-left: 35px;
+}
+.Char__Img > img {
+    height: 100%;
+    width: 100%;
+}
+
+#idChar{
+    padding: .5rem;
+    border-radius: .3rem;
+    width: 100%;
+}
+.personagem-escolhido-espaco{
+    width: 100%;
+}
+.personagem-escolhido-input-espaco{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.modal-overlay{
+background-color: rgba(0, 0, 0, 0.566);
+width: 100vw;
+height: 100vh;
+position: fixed;
+top: 0;
+left:0;
+z-index: 99999;
+display: none;
+justify-content: center;
+align-items: center;
+overflow-y: auto;
+}
+.card-modal{
+    margin: 1rem;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    min-height: 300px;
+    background-color: #ffffff;
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+}
+.modal-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-image: radial-gradient(rgba(77, 46, 136, 0.5),rgba(134, 97, 202,0.5),rgba(119, 54, 118, 0.5));
+}
+.modal-header>h2{
+    color: #ffffff;
+}
+.modal-header > a{
+    font-style: none;
+    color: #ffffff;
+}
+.exit-modal{
+    text-decoration: none;
+    font-size: 1.5rem;
+    transform: scale(0.8);
+    transition: all 0.3s ease-in-out;
+
+}
+.exit-modal:hover{
+    transform: scale(1);
+}
+.modal-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: .5rem 1rem;
+    flex: 1;
+}
+.modal-body form{
+    display: flex;
+    width: 100%;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.modal-body form input,textarea{
+    width: 100%;
+    padding: .3rem;
+    font-size: .8rem;
+    border-radius: .5rem;
+    outline: none;
+    border-style: groove;
+}
+.modal-body form button{
+    display: flex;
+    justify-content: center;
+    padding: .5rem;
+    width: 30%;
+    font-size: 1rem;
+    background-color: transparent;
+    color: #8661CA;
+    font-family: 'Fredoka', sans-serif;
+    border: solid 1px #8661CA ;
+    border-radius: .3rem;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out ;
+}
+.modal-body form button:hover{
+    background-color:#8661CA ;
+    color: #ffffff;
+}
+
+.Char__buttons{
+    height: 15%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;    
+}
+.delete-button{
+    background-color: transparent;
+    border: solid 1px  #000000;
+    color:  #ffffff;
+    font-family: 'Fredoka', sans-serif;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: all 0.3s ease-in-out;
+}
+.delete-button:hover{
+    background-color: rgb(255, 0, 0);
+    transform: scale(1.2);
+}
+
+.edit-button{
+    background-color: transparent;
+    border: solid 1px  #000000;
+    color:  #ffffff;
+    font-family: 'Fredoka', sans-serif;
+    cursor: pointer;
+    border-radius: .5rem;
+    transition: all 0.3s ease-in-out;
+}
+.edit-button:hover{
+    background-color: rgb(0, 187, 255);
+    transform: scale(1.2);
+}
+
+#delete-body{
+    display:flex;
+    flex-direction: column;
+}
+
+#delete-body > .btns-delete {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+.btns-delete > button {
+    padding: 1rem  2rem;
+    background-color: transparent;
+    border: solid 1px ;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: 'Fredoka', sans-serif;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+.btns-delete > .btn-nao:hover {
+    background-color: rgb(255, 0, 0);
+    color: #ffffff;
+}
+.btns-delete > .btn-sim:hover {
+    background-color: rgb(8, 188, 212);
+    color: #ffffff;
+}

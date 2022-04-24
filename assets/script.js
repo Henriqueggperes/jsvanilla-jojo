@@ -1,42 +1,43 @@
-const baseURL = "http://localhost:3000/personagens";
+const baseURL = "http://localhost:3000/characters";
 
 async function findAllCharacters() {
-  const response = await fetch(`${baseURL}/todos-personagens`);
-
+  const response = await fetch(`${baseURL}/all-characters`);
+  
   const personagens = await response.json();
-
+  
   personagens.forEach(function (personagens) {
     document.querySelector("#charList").insertAdjacentHTML(
       "beforeend",
       `
-      <div class="Main__Card" id="CharListItem_${personagens.id}">
-      <div class="CharsList__Char">${[personagens.personagem]}</div>
-      <div class="CharsList__Img">
-      <img 
-      src="${personagens.foto}" 
-      alt="Personagem ${personagens.personagem}"> 
+      <div class="Main__Card" id="CharListItem_'${personagens._id}'">
+        <div class="CharsList__Char">${[personagens.personagem]}</div>
+        <div class="CharsList__Img">
+        <img 
+        src="${personagens.foto}" 
+        alt="Personagem ${personagens.personagem}"> 
       </div>
       <div class="CharsList__Stand">Stand: ${personagens.stand}</div>
-      <div class = "Char__buttons">
-      <button class="edit-button" onclick="abrirModal(${personagens.id})"> Editar </button>
-      <button class="delete-button" onclick="abrirModalDelete()"> Apagar </button>
+        <div class = "Char__buttons">
+        <button class="edit-button" onclick="abrirModal('${personagens._id}')"> Editar </button>
+        <button class="delete-button" onclick="abrirModalDelete('${personagens._id}')"> Apagar </button>
+        </div>
       </div>
-  </div>
       `
-    );
-  });
-}
-
+      );
+    });
+  }
+  findAllCharacters();
+  
 async function findByIdCharacters() {
   const id = document.querySelector("#idChar").value;
-  const response = await fetch(`${baseURL}/find-personagem/${id}`);
+  const response = await fetch(`${baseURL}/find-character/${id}`);
   const personagem = await response.json();
 
   const personagemEscolhidoDiv = document.querySelector("#personagemEscolhido");
 
   personagemEscolhidoDiv.innerHTML = `
   <h3> Personagem escolhido</h3>
-  <div class="Char__Card" id="CharListItem_${personagem.id}">
+  <div class="Char__Card" id="CharListItem_'${personagem._id}'">
       <div class="Char__Name">${[personagem.personagem]}</div>
       <div class="Char__Img">
          <img 
@@ -56,14 +57,13 @@ async function findByIdCharacters() {
   `;
 }
 
-findAllCharacters();
 
-async function abrirModal(id = null) {
+async function abrirModal(id = "") {
 
-  if(id!= null){
+  if(id!= ""){
    document.querySelector("#modal-title").innerText = "Atualizar personagem"
   
-   const response = await fetch(`${baseURL}/find-personagem/${id}`);
+   const response = await fetch(`${baseURL}/find-character/${id}`);
    const personagem = await response.json();
    document.querySelector('#personagem').value=personagem.personagem;
     document.querySelector('#stand').value=personagem.stand;
@@ -71,7 +71,7 @@ async function abrirModal(id = null) {
     document.querySelector('#standstatus').value=personagem.standstatus;
     document.querySelector('#descricao').value=personagem.descricao;
     document.querySelector('#foto').value =personagem.foto;
-    document.querySelector('#id').value = personagem.id;  
+    document.querySelector('#id').value = personagem._id;  
   }
 
   const modal = (document.querySelector("#create").style.display =
@@ -106,9 +106,9 @@ function fecharModal() {
     foto
   };
 
-const modoEdicaoAtivado = id > 0;
+const modoEdicaoAtivado = id != "";
 
-const endpoint = baseURL+(modoEdicaoAtivado ? `/update/${id}`:`/create`);
+const endpoint = baseURL+(modoEdicaoAtivado ? `/update-character/${id}`:`/create-character`);
   
 const response = await fetch(endpoint, {
   method: modoEdicaoAtivado ? "put" : "post" ,
@@ -120,27 +120,19 @@ const response = await fetch(endpoint, {
   });
   const novoPersonagem =await response.json();
 
-  const html = `
-  <div class="Main__Card" id="CharListItem_${personagem.id}">
-    <div class="CharsList__Char">${[novoPersonagem.personagem]}</div>
-    <div class="CharsList__Img">
-      <img src="${novoPersonagem.foto}" alt="Personagem ${novoPersonagem.personagem}"> 
-    </div>
-    <div class="CharsList__Stand">Stand: ${novoPersonagem.stand}</div>
-  </div>
-  `;
-if(modoEdicaoAtivado){
-document.querySelector(`CharListItem_${id}`).outerHTML = html;
-}else{
-  document.querySelector("#charList").insertAdjacentHTML('beforeend',html);
-}
+  document.location.reload(true);
+// if(modoEdicaoAtivado){
+// document.querySelector(`CharListItem_${id}`).outerHTML = html;
+// }else{
+//   document.querySelector("#charList").insertAdjacentHTML('beforeend',html);
+// }
 
   
     fecharModal();
 }
 
 
-function abrirModalDelete(){
+function abrirModalDelete(id){
   document.querySelector("#delete").style.display =
   "flex";
   const btnS = document.querySelector(".btn-sim")
@@ -149,12 +141,12 @@ function abrirModalDelete(){
   })
 }
 
-function fecharModalDelete(id){
+function fecharModalDelete(){
   document.querySelector("#delete").style.display =
   "none";
 }
 async function deletePersonagem(id){
-  const response = await fetch(`${baseURL}/delete/${id}`,{
+  const response = await fetch(`${baseURL}/delete-character/${id}`,{
   method:"delete",
   headers: {
    "Content-Type": "application/json"
@@ -162,11 +154,9 @@ async function deletePersonagem(id){
   mode: "cors"
   });
   const result = await response.json();
-  alert(result.message);
-
-  document.getElementById("charList").innerHTML = "";
+ 
+  document.location.reload(true);
 
   fecharModalDelete();
-  findAllCharacters();
 
 };
